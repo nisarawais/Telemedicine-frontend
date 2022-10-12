@@ -1,1 +1,1 @@
-# telemedicine-frontend-comp3415
+# Telemedicine App Frontend

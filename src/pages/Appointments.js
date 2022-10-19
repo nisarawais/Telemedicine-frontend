@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Appointments() {
   const [appointments, setAppointments] = useState([]);
-
-  const { id } = useParams();
 
   useEffect(() => {
     loadAppointments();
@@ -22,50 +20,64 @@ export default function Appointments() {
   };
 
   return (
-    <div className="container">
-      <div className="py-4">
-        <table className="table border shadow">
-          <thead>
+    <div>
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th scope="col" class="py-3 px-6">
+              ID
+            </th>
+            <th scope="col" class="py-3 px-6">
+              Date
+            </th>
+            <th scope="col" class="py-3 px-6">
+              Time
+            </th>
+            <th scope="col" class="py-3 px-6">
+              Doctor
+            </th>
+            <th scope="col" class="py-3 px-6">
+              <span class="sr-only">Edit</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {appointments.map((appointment, index) => (
             <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Date</th>
-              <th scope="col">Time</th>
+              <th scope="row" key={index}>
+                {index + 1}
+              </th>
+              <td>{appointment.date}</td>
+              <td>{appointment.time}</td>
+              <td>
+                <Link
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold mx-1 py-2 px-4 border border-black rounded"
+                  to={`/viewappointment/${appointment.id}`}
+                >
+                  View
+                </Link>
+                <Link
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold mx-1 py-2 px-4 border border-black rounded"
+                  to={`/editappointment/${appointment.id}`}
+                >
+                  Edit
+                </Link>
+                <button
+                  className="bg-red-500 hover:bg-red-700 text-white font-bold mx-1 py-2 px-4 border border-black rounded"
+                  onClick={() => deleteAppointment(appointment.id)}
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {appointments.map((appointment, index) => (
-              <tr>
-                <th scope="row" key={index}>
-                  {index + 1}
-                </th>
-                <td>{appointment.date}</td>
-
-                <td>{appointment.time}</td>
-                <td>
-                  <Link
-                    className="btn btn-primary mx-2"
-                    to={`/viewappointment/${appointment.id}`}
-                  >
-                    View
-                  </Link>
-                  <Link
-                    className="btn btn-outline-primary mx-2"
-                    to={`/editappointment/${appointment.id}`}
-                  >
-                    Edit
-                  </Link>
-                  <button
-                    className="btn btn-danger mx-2"
-                    onClick={() => deleteAppointment(appointment.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <Link className="btn btn-success btn-block" to="/addappointment">
+          ))}
+        </tbody>
+      </table>
+      <div className="mt-5">
+        <Link
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-black rounded justify-center"
+          to="/addappointment"
+        >
           Add Appointment
         </Link>
       </div>

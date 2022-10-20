@@ -13,40 +13,43 @@ export default function Home() {
     setAppointments(result.data);
   };
 
+  const formatTime = (timeString) => {
+    const [hourString, minute] = timeString.split(":");
+    const hour = +hourString % 24;
+    return (hour % 12 || 12) + ":" + minute + (hour < 12 ? " AM" : " PM");
+  };
+
   return (
     <div>
-      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th scope="col" class="py-3 px-6">
-              ID
-            </th>
-            <th scope="col" class="py-3 px-6">
-              Date
-            </th>
-            <th scope="col" class="py-3 px-6">
-              Time
-            </th>
-            <th scope="col" class="py-3 px-6">
-              Doctor
-            </th>
-            <th scope="col" class="py-3 px-6">
-              <span class="sr-only">Edit</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {appointments.map((appointment, index) => (
+      <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="row" key={index}>
-                {index + 1}
+              <th scope="col" class="py-3 px-6">
+                Name
               </th>
-              <td>{appointment.date}</td>
-              <td>{appointment.time}</td>
+              <th scope="col" class="py-3 px-6">
+                Date
+              </th>
+              <th scope="col" class="py-3 px-6">
+                Time
+              </th>
+              <th scope="col" class="py-3 px-6">
+                <span class="sr-only">Edit</span>
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {appointments.map((appointment) => (
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <td class="py-4 px-6">{appointment.name}</td>
+                <td class="py-4 px-6">{appointment.date}</td>
+                <td class="py-4 px-6">{formatTime(appointment.time)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

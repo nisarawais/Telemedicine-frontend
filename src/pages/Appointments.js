@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Appointments() {
   const [appointments, setAppointments] = useState([]);
@@ -27,35 +27,38 @@ export default function Appointments() {
 
   return (
     <div>
-      <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
+        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" class="py-3 px-6">
-                Name
+              <th scope="col" className="py-3 px-6">
+                Appointment Name
               </th>
-              <th scope="col" class="py-3 px-6">
+              <th scope="col" className="py-3 px-6">
                 Date
               </th>
-              <th scope="col" class="py-3 px-6">
+              <th scope="col" className="py-3 px-6">
                 Time
               </th>
-              <th scope="col" class="py-3 px-6">
+              <th scope="col" className="py-3 px-6">
                 Doctor
               </th>
-              <th scope="col" class="py-3 px-6">
-                <span class="sr-only">Edit</span>
+              <th scope="col" className="py-3 px-6">
+                <span className="sr-only">Edit</span>
               </th>
             </tr>
           </thead>
           <tbody>
-            {appointments.map((appointment) => (
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="py-4 px-6">{appointment.name}</td>
-                <td class="py-4 px-6">{appointment.date}</td>
-                <td class="py-4 px-6">{formatTime(appointment.time)}</td>
+            {appointments.map((appointment, id) => (
+              <tr
+                key={id}
+                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+              >
+                <td className="py-4 px-6">{appointment.name}</td>
+                <td className="py-4 px-6">{appointment.date}</td>
+                <td className="py-4 px-6">{formatTime(appointment.time)}</td>
                 <td></td>
-                <td class="py-4 px-6">
+                <td className="py-4 px-6">
                   <Link
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold mx-1 py-2 px-4 border rounded"
                     to={`/viewappointment/${appointment.id}`}

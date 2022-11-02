@@ -31,6 +31,16 @@ const Registration = () => {
       </div>
       </div>
       <div>
+        <label htmlFor="role" className="sr-only">
+          Role
+        </label>
+        <p className="instruction">Choose your role:</p>
+        <select name="role" id="role" className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+          <option value="patient">Patient</option>
+          <option value="professional">Professional</option>
+        </select>
+      </div>
+      <div>
         <label htmlFor="email" className="sr-only">
           Email
         </label>

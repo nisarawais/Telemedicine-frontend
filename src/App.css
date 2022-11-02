@@ -45,6 +45,12 @@
   display: table;
   clear: both;
 }
+
+.instruction{
+  text-align: left;
+  margin-bottom: 1%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

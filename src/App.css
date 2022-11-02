@@ -33,6 +33,11 @@
   width: 50%;
 }
 
+.red{
+  text-align: left;
+  color:red;
+}
+
 .column {
   float: left;
   width: 47.5%;

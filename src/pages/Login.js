@@ -17,7 +17,7 @@ const Login = () => {
           id="email"
           autoComplete="email"
           className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-          placeholder="Email"
+          placeholder="Email" required
         />
       </div>
       <div>
@@ -30,7 +30,7 @@ const Login = () => {
           id="password"
           autoComplete="password"
           className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-          placeholder="Password"
+          placeholder="Password" required
         />
       </div>
       <button className="w-full px-10 py-3 text-white font-semibold bg-black rounded-md">

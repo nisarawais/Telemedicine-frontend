@@ -95,7 +95,9 @@ const Registration = () => {
           className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
           placeholder="First Name" required
         />
-        {error.firstName && <span className='red'>{error.firstName}</span>}
+        <div>
+          {error.firstName && <span>{error.firstName}</span>}
+        </div>
       </div>
       <div className="column space">
         <label htmlFor="lastName" className="sr-only">
@@ -111,7 +113,9 @@ const Registration = () => {
           className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
           placeholder="Last Name" required
         />
-        {error.lastName && <span className='red'>{error.lastName}</span>}
+        <div className="red">
+         {error.lastName && <span>{error.lastName}</span>}
+        </div>
       </div>
       </div>
       <div>
@@ -139,7 +143,9 @@ const Registration = () => {
           className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
           placeholder="Email" required
         />
-        {error.email && <span className='red'>{error.email}</span>}
+        <div className="red">
+         {error.email && <span>{error.email}</span>}
+        </div>
       </div>
       <div>
         <label htmlFor="password" className="sr-only">
@@ -156,25 +162,27 @@ const Registration = () => {
           className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
           placeholder="Password"
         />
-        {/* {error.password && <span className='red'>{error.password}</span>} */}
+        <div className="red">
+          {error.password && <span>{error.password}</span>}
+        </div>
       </div>
       <div>
-        <label htmlFor="password" className="sr-only">
+        <label htmlFor="confirmPassword" className="sr-only">
           Confirm Password
         </label>
         <input
           type="password"
-          name="password"
-          id="password"
+          name="confirmPassword"
+          id="confirmPpassword"
           value={input.confirmPassword}
           onChange={onInputChange}
           onBlur={validateInput}
-          autoComplete="password"
           className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
           placeholder="Confirm Password"
         />
-        {error.confirmPassword && <span className='red'>{error.confirmPassword}</span>}
-        
+        <div className="red">
+          {error.confirmPassword && <span>{error.confirmPassword}</span>}
+        </div>
       </div>
       <button className="w-full px-10 py-3 text-white font-semibold bg-black rounded-md">
         Register

@@ -1,12 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import Registration from "./Registration";
 
-const Login = () => {
-  const navigate = useNavigate();
+const Registration = () => {
   return (
     <div className="bg-gray-100 m-auto max-w-xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8 space-y-6">
-      <p className="text-2xl font-extrabold">Login</p>
+      <p className="text-2xl font-extrabold">Registration</p>
       <div>
         <label htmlFor="email" className="sr-only">
           Email
@@ -34,7 +31,7 @@ const Login = () => {
         />
       </div>
       <button className="w-full px-10 py-3 text-white font-semibold bg-black rounded-md">
-        Login
+        Register
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -50,17 +47,8 @@ const Login = () => {
           />
         </svg>
       </button>
-      <button className="w-full px-10 py-3 text-white font-semibold bg-black rounded-md reg" onClick={() => navigate("/registration")}>
-        Register
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-          />
-
-      </button>
     </div>
   );
 };
 
-export default Login;
+export default Registration;

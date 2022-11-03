@@ -28,7 +28,9 @@ export default function AddAppointment() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8080/api/v1/appointment", appointment);
+    await axios.post("http://localhost:8080/api/v1/appointment", appointment, {
+      headers: { Authorization: localStorage.getItem("SavedToken") },
+    });
     navigate("/appointments");
   };
 

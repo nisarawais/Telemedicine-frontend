@@ -9,7 +9,9 @@ export default function Home() {
   }, []);
 
   const loadAppointments = async () => {
-    const result = await axios.get("http://localhost:8080/api/v1/appointment");
+    const result = await axios.get("http://localhost:8080/api/v1/appointment", {
+      headers: { Authorization: localStorage.getItem("SavedToken") },
+    });
     setAppointments(result.data);
   };
 

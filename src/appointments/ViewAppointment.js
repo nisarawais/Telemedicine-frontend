@@ -17,7 +17,10 @@ export default function ViewAppointment() {
 
   const loadAppointment = async () => {
     const result = await axios.get(
-      `http://localhost:8080/api/v1/appointment/${id}`
+      `http://localhost:8080/api/v1/appointment/${id}`,
+      {
+        headers: { Authorization: localStorage.getItem("SavedToken") },
+      }
     );
     setAppointment(result.data);
   };

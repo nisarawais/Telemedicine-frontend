@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import authService from "../service/authService";
 
 const Login = () => {
   const [input, setInput] = useState({
@@ -24,14 +24,7 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8080/api/login", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      email: input.email,
-      password: input.password,
-    });
-    navigate("/");
+    authService.login(input.email, input.password);
   };
 
   const validateInput = (e) => {

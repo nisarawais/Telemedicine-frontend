@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import authService from "../service/authService";
 
 const Registration = () => {
   const [input, setInput] = useState({
@@ -30,7 +31,7 @@ const Registration = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8080/api/user/save", input);
+    authService.register(input.name, input.email, input.password);
     navigate("/login");
   };
 

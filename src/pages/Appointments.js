@@ -10,12 +10,16 @@ export default function Appointments() {
   }, []);
 
   const loadAppointments = async () => {
-    const result = await axios.get("http://localhost:8080/api/v1/appointment");
+    const result = await axios.get("http://localhost:8080/api/v1/appointment", {
+      headers: { Authorization: localStorage.getItem("SavedToken") },
+    });
     setAppointments(result.data);
   };
 
   const deleteAppointment = async (id) => {
-    await axios.delete(`http://localhost:8080/api/v1/appointment/${id}`);
+    await axios.delete(`http://localhost:8080/api/v1/appointment/${id}`, {
+      headers: { Authorization: localStorage.getItem("SavedToken") },
+    });
     loadAppointments();
   };
 

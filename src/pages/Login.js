@@ -25,7 +25,7 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     authService.login(input.email, input.password);
-    navigate("/");
+    navigate("/userdashboard");
   };
 
   const validateInput = (e) => {

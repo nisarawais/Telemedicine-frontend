@@ -10,11 +10,13 @@ import EditAppointment from "../appointments/EditAppointment";
 import ViewAppointment from "../appointments/ViewAppointment";
 import Appointments from "../pages/Appointments";
 import Registration from "../pages/Registration";
+import UserDashboard from "../pages/UserDashboard";
 
 const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/userdashboard" element={<UserDashboard />} />
       <Route path="/appointments" element={<Appointments />} />
       <Route path="/messages" element={<Messages />} />
       <Route path="/files" element={<Files />} />

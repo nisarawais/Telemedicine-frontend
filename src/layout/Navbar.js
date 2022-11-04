@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import authService from "../service/authService";
 
 const Navbar = () => {
+  const [currentUser, setCurrentUser] = useState(undefined);
+  const [showUserDashboard, setShowUserDashboard] = useState(false);
+  const [showAdminBoard, setShowAdminBoard] = useState(false);
+
+  useEffect(() => {
+    const user = authService.getCurrentUser();
+
+    if (user) {
+      setCurrentUser(user);
+      setShowUserDashboard(user.includes("ROLE_USER"));
+    }
+  }, []);
+
+  const logOut = () => {
+    authService.logout();
+  };
+
   return (
     <nav className="flex items-center flex-wrap bg-gray-900 p-6">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
@@ -17,6 +35,14 @@ const Navbar = () => {
           >
             Login
           </Link>
+          {showUserDashboard && (
+            <Link
+              className="block mt-4 lg:inline-block lg:mt-0  text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
+              to="/userdashboard"
+            >
+              Dashboard
+            </Link>
+          )}
           <Link
             className="block mt-4 lg:inline-block lg:mt-0  text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
             to="/appointments"
@@ -40,6 +66,13 @@ const Navbar = () => {
             to="/account"
           >
             My Account
+          </Link>
+          <Link
+            className="block mt-4 lg:inline-block lg:mt-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
+            to="/"
+            onClick={logOut}
+          >
+            logout
           </Link>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import userService from "../service/userService";
+import formatTime from "../util/formatTime";
 
 export default function Appointments() {
   const [appointments, setAppointments] = useState([]);
@@ -10,23 +11,8 @@ export default function Appointments() {
   }, []);
 
   const loadAppointments = async () => {
-    const result = await axios.get("http://localhost:8080/api/v1/appointment", {
-      headers: { Authorization: localStorage.getItem("SavedToken") },
-    });
+    const result = await userService.getAppointments();
     setAppointments(result.data);
-  };
-
-  const deleteAppointment = async (id) => {
-    await axios.delete(`http://localhost:8080/api/v1/appointment/${id}`, {
-      headers: { Authorization: localStorage.getItem("SavedToken") },
-    });
-    loadAppointments();
-  };
-
-  const formatTime = (timeString) => {
-    const [hourString, minute] = timeString.split(":");
-    const hour = +hourString % 24;
-    return (hour % 12 || 12) + ":" + minute + (hour < 12 ? " AM" : " PM");
   };
 
   return (
@@ -77,7 +63,10 @@ export default function Appointments() {
                   </Link>
                   <button
                     className="bg-red-500 hover:bg-red-700 text-white font-bold mx-1 py-2 px-4 border rounded"
-                    onClick={() => deleteAppointment(appointment.id)}
+                    onClick={() => {
+                      userService.deleteAppointment(appointment.id);
+                      loadAppointments();
+                    }}
                   >
                     Delete
                   </button>

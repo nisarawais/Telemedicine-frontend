@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import userService from "../service/userService";
+import formatTime from "../util/formatTime";
 
 export default function Home() {
   const [appointments, setAppointments] = useState([]);
@@ -9,16 +10,8 @@ export default function Home() {
   }, []);
 
   const loadAppointments = async () => {
-    const result = await axios.get("http://localhost:8080/api/v1/appointment", {
-      headers: { Authorization: localStorage.getItem("SavedToken") },
-    });
+    const result = await userService.getAppointments();
     setAppointments(result.data);
-  };
-
-  const formatTime = (timeString) => {
-    const [hourString, minute] = timeString.split(":");
-    const hour = +hourString % 24;
-    return (hour % 12 || 12) + ":" + minute + (hour < 12 ? " AM" : " PM");
   };
 
   return (

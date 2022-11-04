@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import userService from "../service/userService";
 
 export default function EditAppointment() {
   const [healthcareProfessionals, setHealthcareProfessionals] = useState([]);
@@ -33,23 +34,12 @@ export default function EditAppointment() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(
-      `http://localhost:8080/api/v1/appointment/${id}`,
-      appointment,
-      {
-        headers: { Authorization: localStorage.getItem("SavedToken") },
-      }
-    );
+    await userService.updateAppointment(id, appointment);
     navigate("/appointments");
   };
 
   const loadAppointment = async () => {
-    const result = await axios.get(
-      `http://localhost:8080/api/v1/appointment/${id}`,
-      {
-        headers: { Authorization: localStorage.getItem("SavedToken") },
-      }
-    );
+    const result = await userService.getAppointment(id);
     setAppointment(result.data);
   };
 

@@ -4,7 +4,7 @@ import formatTime from "../util/formatTime";
 import authService from "../service/authService";
 
 export default function UserDashboard() {
-  console.log(authService.getCurrentUser());
+  authService.getCurrentUser();
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {

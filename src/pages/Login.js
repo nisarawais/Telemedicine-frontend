@@ -24,7 +24,7 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    authService.login(input.email, input.password);
+    await authService.login(input.email, input.password);
     navigate("/userdashboard");
   };
 

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import authService from "../service/authService";
 
@@ -109,20 +108,6 @@ const Registration = () => {
             required
           />
           <div>{error.name && <span>{error.name}</span>}</div>
-        </div>
-        <div>
-          <label htmlFor="role" className="sr-only">
-            Role
-          </label>
-          <p className="instruction">Choose your role:</p>
-          <select
-            name="role"
-            id="role"
-            className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-          >
-            <option value="patient">Patient</option>
-            <option value="professional">Professional</option>
-          </select>
         </div>
         <div>
           <label htmlFor="email" className="sr-only">

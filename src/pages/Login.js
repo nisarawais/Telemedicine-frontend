@@ -13,6 +13,8 @@ const Login = () => {
     password: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const onInputChange = (e) => {
     const { name, value } = e.target;
     setInput((prev) => ({
@@ -24,8 +26,14 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await authService.login(input.email, input.password);
-    navigate("/userdashboard");
+    authService.login(input.email, input.password).then(() => {
+      setLoading(false);
+      if (!loading) {
+        navigate("/userdashboard");
+        //temporary
+        window.location.reload();
+      }
+    });
   };
 
   const validateInput = (e) => {

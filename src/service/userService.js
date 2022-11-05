@@ -31,6 +31,12 @@ class UserService {
       headers: authHeader(),
     });
   }
+
+  addRole(email, roleName) {
+    return axios.post(API_URL + "role/addtouser", email, roleName, {
+      headers: authHeader(),
+    });
+  }
 }
 
 export default new UserService();

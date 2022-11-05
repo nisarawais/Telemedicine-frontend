@@ -78,7 +78,7 @@ const Navbar = () => {
                   to="/"
                   onClick={logOut}
                 >
-                  logout
+                  Logout
                 </Link>
               </div>
             ) : (

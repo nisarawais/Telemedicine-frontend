@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Messages from "../pages/Messages";
@@ -12,22 +12,42 @@ import Appointments from "../pages/Appointments";
 import Registration from "../pages/Registration";
 import UserDashboard from "../pages/UserDashboard";
 import HPDashboard from "../pages/HPDashboard";
+import authService from "../service/authService";
 
 const Router = () => {
+  const [currentUser, setCurrentUser] = useState(undefined);
+
+  useEffect(() => {
+    const user = authService.getCurrentUser();
+
+    if (user) {
+      setCurrentUser(user);
+    }
+  }, []);
+
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/userdashboard" element={<UserDashboard />} />
-      <Route path="/hpdashboard" element={<HPDashboard />} />
-      <Route path="/appointments" element={<Appointments />} />
-      <Route path="/messages" element={<Messages />} />
-      <Route path="/files" element={<Files />} />
-      <Route path="/account" element={<Account />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/registration" element={<Registration />} />
-      <Route path="/addappointment" element={<AddAppointment />} />
-      <Route path="/editappointment/:id" element={<EditAppointment />} />
-      <Route path="/viewappointment/:id" element={<ViewAppointment />} />
+      <>
+        {currentUser ? (
+          <>
+            <Route path="/userdashboard" element={<UserDashboard />} />
+            <Route path="/hpdashboard" element={<HPDashboard />} />
+            <Route path="/appointments" element={<Appointments />} />
+            <Route path="/messages" element={<Messages />} />
+            <Route path="/files" element={<Files />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/addappointment" element={<AddAppointment />} />
+            <Route path="/editappointment/:id" element={<EditAppointment />} />
+            <Route path="/viewappointment/:id" element={<ViewAppointment />} />
+          </>
+        ) : (
+          <>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/registration" element={<Registration />} />
+          </>
+        )}
+      </>
     </Routes>
   );
 };

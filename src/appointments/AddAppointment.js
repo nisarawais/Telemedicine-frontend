@@ -8,7 +8,7 @@ export default function AddAppointment() {
 
   useEffect(function () {
     axios
-      .get("http://localhost:8080/api/v1/healthcareProfessional")
+      .get("http://localhost:8080/api/healthcareProfessional")
       .then((response) => setHealthcareProfessionals(response.data))
       .then((error) => console.log(error));
   }, []);

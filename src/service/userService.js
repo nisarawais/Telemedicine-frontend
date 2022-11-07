@@ -5,29 +5,29 @@ const API_URL = "http://localhost:8080/api/";
 
 class UserService {
   getAppointments() {
-    return axios.get(API_URL + "v1/appointment", { headers: authHeader() });
+    return axios.get(API_URL + "appointment", { headers: authHeader() });
   }
 
   getAppointment(id) {
-    return axios.get(API_URL + `v1/appointment/${id}`, {
+    return axios.get(API_URL + `appointment/${id}`, {
       headers: authHeader(),
     });
   }
 
   addAppointment(appointment) {
-    return axios.post(API_URL + "v1/appointment", appointment, {
+    return axios.post(API_URL + "appointment", appointment, {
       headers: authHeader(),
     });
   }
 
   deleteAppointment(id) {
-    return axios.delete(API_URL + `v1/appointment/${id}`, {
+    return axios.delete(API_URL + `appointment/${id}`, {
       headers: authHeader(),
     });
   }
 
   updateAppointment(id, appointment) {
-    return axios.put(API_URL + `v1/appointment/${id}`, appointment, {
+    return axios.put(API_URL + `appointment/${id}`, appointment, {
       headers: authHeader(),
     });
   }

@@ -32,8 +32,8 @@ class AuthService {
     Navigate("/");
   }
 
-  register(name, email, password) {
-    return axios.post(API_URL + "user/save", {
+  registerPatient(name, email, password) {
+    return axios.post(API_URL + "patient", {
       name,
       email,
       password,

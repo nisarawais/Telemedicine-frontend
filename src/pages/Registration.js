@@ -30,7 +30,7 @@ const Registration = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    authService.register(input.name, input.email, input.password);
+    authService.registerPatient(input.name, input.email, input.password);
     navigate("/login");
   };
 

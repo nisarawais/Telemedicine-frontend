@@ -13,6 +13,8 @@ import Registration from "../pages/Registration";
 import UserDashboard from "../pages/UserDashboard";
 import HPDashboard from "../pages/HPDashboard";
 import authService from "../service/authService";
+import HospitalRegistration from "../pages/HospitalRegistration";
+import HospitalDashboard from "../pages/HospitalDashboard";
 
 const Router = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -32,6 +34,7 @@ const Router = () => {
           <>
             <Route path="/userdashboard" element={<UserDashboard />} />
             <Route path="/hpdashboard" element={<HPDashboard />} />
+            <Route path="/hospitaldashboard" element={<HospitalDashboard />} />
             <Route path="/appointments" element={<Appointments />} />
             <Route path="/messages" element={<Messages />} />
             <Route path="/files" element={<Files />} />
@@ -45,6 +48,10 @@ const Router = () => {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
+            <Route
+              path="/hospitalregistration"
+              element={<HospitalRegistration />}
+            />
           </>
         )}
       </>

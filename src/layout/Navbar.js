@@ -6,14 +6,21 @@ const Navbar = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [showUserDashboard, setShowUserDashboard] = useState(false);
   const [showHPDashboard, setShowHPDashboard] = useState(false);
+  const [showHospitalDashboard, setShowHospitalDashboard] = useState(false);
 
   useEffect(() => {
     const user = authService.getCurrentUser();
-
     if (user) {
       setCurrentUser(user);
-      setShowUserDashboard(user.includes("ROLE_USER"));
-      setShowHPDashboard(user.includes("ROLE_ADMIN"));
+      if (user.includes("ROLE_PATIENT")) {
+        setShowUserDashboard(true);
+      }
+      if (user.includes("ROLE_HP")) {
+        setShowHPDashboard(true);
+      }
+      if (user.includes("ROLE_HOSPITAL")) {
+        setShowHospitalDashboard(true);
+      }
     }
   }, []);
 
@@ -45,6 +52,14 @@ const Navbar = () => {
                   <Link
                     className="block mt-4 lg:inline-block lg:mt-0  text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
                     to="/hpdashboard"
+                  >
+                    Dashboard
+                  </Link>
+                )}
+                {showHospitalDashboard && (
+                  <Link
+                    className="block mt-4 lg:inline-block lg:mt-0  text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
+                    to="/hospitaldashboard"
                   >
                     Dashboard
                   </Link>

@@ -27,7 +27,6 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     authService.login(input.email, input.password).then(() => {
-      authService.setUser();
       setLoading(false);
       if (!loading) {
         navigate("/userdashboard");
@@ -120,9 +119,15 @@ const Login = () => {
           type={"submit"}
           onClick={() => navigate("/registration")}
         >
-          Register
+          Sign Up
         </button>
       </form>
+      <a
+        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+        href="/hospitalregistration"
+      >
+        or Hospital Registration?
+      </a>
     </div>
   );
 };

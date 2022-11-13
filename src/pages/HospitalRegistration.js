@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../service/authService";
 
-const Registration = () => {
+const HospitalRegistration = () => {
   const [input, setInput] = useState({
     name: "",
     email: "",
@@ -30,7 +30,7 @@ const Registration = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    authService.registerPatient(input.name, input.email, input.password);
+    authService.registerHospital(input.name, input.email, input.password);
     navigate("/login");
   };
 
@@ -91,7 +91,7 @@ const Registration = () => {
   return (
     <div className="bg-gray-100 m-auto max-w-xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8 space-y-6">
       <form className="space-y-4" onSubmit={(e) => onSubmit(e)}>
-        <p className="text-2xl font-extrabold">Patient Registration</p>
+        <p className="text-2xl font-extrabold">Hospital Registration</p>
         <div className="row">
           <label htmlFor="name" className="sr-only">
             First Name
@@ -190,4 +190,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default HospitalRegistration;

@@ -15,6 +15,7 @@ import HPDashboard from "../pages/HPDashboard";
 import authService from "../service/authService";
 import HospitalRegistration from "../pages/HospitalRegistration";
 import HospitalDashboard from "../pages/HospitalDashboard";
+import AddHP from "../healthcareprofessionals/AddHP";
 
 const Router = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -42,6 +43,7 @@ const Router = () => {
             <Route path="/addappointment" element={<AddAppointment />} />
             <Route path="/editappointment/:id" element={<EditAppointment />} />
             <Route path="/viewappointment/:id" element={<ViewAppointment />} />
+            <Route path="/addHP" element={<AddHP />} />
           </>
         ) : (
           <>

@@ -41,6 +41,28 @@ class UserService {
   getUser() {
     return axios.get(API_URL + "user", { headers: authHeader() });
   }
+
+  getHealthcareProfessionals() {
+    return axios.get(API_URL + "healthcareProfessional", {
+      headers: authHeader(),
+    });
+  }
+
+  addHP(healthcareProfessional) {
+    return axios.post(
+      API_URL + "healthcareProfessional",
+      healthcareProfessional,
+      {
+        headers: authHeader(),
+      }
+    );
+  }
+
+  deleteHP(id) {
+    return axios.delete(API_URL + `healthcareProfessional/${id}`, {
+      headers: authHeader(),
+    });
+  }
 }
 
 export default new UserService();

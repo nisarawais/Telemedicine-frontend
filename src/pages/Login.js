@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import authService from "../service/authService";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -60,7 +61,6 @@ const Login = () => {
       return stateObject;
     });
   };
-  const navigate = useNavigate();
   return (
     <div className="bg-gray-100 m-auto max-w-xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8 space-y-6">
       <form className="space-y-4" onSubmit={(e) => onSubmit(e)}>

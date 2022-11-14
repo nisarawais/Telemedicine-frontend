@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import authService from "../service/authService";
 import userService from "../service/userService";
 
 export default function AddAppointment() {
@@ -24,9 +25,12 @@ export default function AddAppointment() {
     healthcareProfessional: {
       id: "",
     },
+    patient: {
+      id: "",
+    },
   });
 
-  const { name, date, time, healthcareProfessional } = appointment;
+  const { name, date, time, healthcareProfessional, patient } = appointment;
 
   const onInputChange = (e) => {
     setAppointment({ ...appointment, [e.target.name]: e.target.value });
@@ -35,6 +39,7 @@ export default function AddAppointment() {
   const onSubmit = async (e) => {
     e.preventDefault();
     healthcareProfessional.id = select;
+    patient.id = JSON.parse(authService.getCurrentUser()).id;
     await userService.addAppointment(appointment);
     navigate("/appointments");
   };

@@ -1,18 +1,10 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import userService from "../service/userService";
 
 export default function EditAppointment() {
-  const [healthcareProfessionals, setHealthcareProfessionals] = useState([]);
-
-  useEffect(function () {
-    axios
-      .get("http://localhost:8080/api/healthcareProfessional")
-      .then((response) => setHealthcareProfessionals(response.data))
-      .then((error) => console.log(error));
-  }, []);
-
+  const [select, setSelected] = useState("");
+  const [optionList, setOptionList] = useState([]);
   const { id } = useParams();
   let navigate = useNavigate();
 
@@ -20,9 +12,12 @@ export default function EditAppointment() {
     name: "",
     date: "",
     time: "",
+    healthcareProfessional: {
+      id: "",
+    },
   });
 
-  const { name, date, time } = appointment;
+  const { name, date, time, healthcareProfessional } = appointment;
 
   const onInputChange = (e) => {
     setAppointment({ ...appointment, [e.target.name]: e.target.value });
@@ -30,10 +25,12 @@ export default function EditAppointment() {
 
   useEffect(() => {
     loadAppointment();
+    loadHealthcareProfessionals();
   }, []);
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    healthcareProfessional.id = select;
     await userService.updateAppointment(id, appointment);
     navigate("/appointments");
   };
@@ -41,6 +38,11 @@ export default function EditAppointment() {
   const loadAppointment = async () => {
     const result = await userService.getAppointment(id);
     setAppointment(result.data);
+  };
+
+  const loadHealthcareProfessionals = async () => {
+    const result = await userService.getHealthcareProfessionals();
+    setOptionList(result.data);
   };
 
   return (
@@ -100,24 +102,22 @@ export default function EditAppointment() {
             onChange={(e) => onInputChange(e)}
           />
         </div>
-        <div className="relative inline-block w-full text-gray-700">
-          <label
-            htmlFor="doctor"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Select Doctor
-          </label>
-          <select className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline">
-            {healthcareProfessionals.map((healthcareProfessional) => (
-              <option
-                key={healthcareProfessional.id}
-                value={healthcareProfessional}
-              >
-                {healthcareProfessional.name}
-              </option>
-            ))}
-          </select>
-        </div>
+        <select
+          className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline"
+          disabled={false}
+          value={select}
+          onChange={(e) => setSelected(e.currentTarget.value)}
+        >
+          <option>Choose Doctor</option>
+          {optionList.map((healthcareProfessional) => (
+            <option
+              key={healthcareProfessional.id}
+              value={healthcareProfessional.id}
+            >
+              {healthcareProfessional.name}
+            </option>
+          ))}
+        </select>
         <div className="mt-4">
           <button
             type="submit"

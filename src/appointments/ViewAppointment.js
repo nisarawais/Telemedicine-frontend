@@ -8,6 +8,9 @@ export default function ViewAppointment() {
     name: "",
     date: "",
     time: "",
+    healthcareProfessional: {
+      id: "",
+    },
   });
 
   const { id } = useParams();
@@ -40,6 +43,9 @@ export default function ViewAppointment() {
             </li>
             <li className="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
               Date: {appointment.date}
+            </li>
+            <li className="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
+              Doctor: {appointment.healthcareProfessional.name}
             </li>
           </ul>
         </div>

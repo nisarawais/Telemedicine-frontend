@@ -1,27 +1,32 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import userService from "../service/userService";
 
 export default function AddAppointment() {
-  const [healthcareProfessionals, setHealthcareProfessionals] = useState([]);
-
-  useEffect(function () {
-    axios
-      .get("http://localhost:8080/api/healthcareProfessional")
-      .then((response) => setHealthcareProfessionals(response.data))
-      .then((error) => console.log(error));
-  }, []);
+  const [select, setSelected] = useState("");
+  const [optionList, setOptionList] = useState([]);
 
   let navigate = useNavigate();
+
+  useEffect(() => {
+    loadHealthcareProfessionals();
+  }, []);
+
+  const loadHealthcareProfessionals = async () => {
+    const result = await userService.getHealthcareProfessionals();
+    setOptionList(result.data);
+  };
 
   const [appointment, setAppointment] = useState({
     name: "",
     date: "",
     time: "",
+    healthcareProfessional: {
+      id: "",
+    },
   });
 
-  const { name, date, time } = appointment;
+  const { name, date, time, healthcareProfessional } = appointment;
 
   const onInputChange = (e) => {
     setAppointment({ ...appointment, [e.target.name]: e.target.value });
@@ -29,6 +34,7 @@ export default function AddAppointment() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    healthcareProfessional.id = select;
     await userService.addAppointment(appointment);
     navigate("/appointments");
   };
@@ -97,11 +103,17 @@ export default function AddAppointment() {
           >
             Select Doctor
           </label>
-          <select className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline">
-            {healthcareProfessionals.map((healthcareProfessional) => (
+          <select
+            className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline"
+            disabled={false}
+            value={select}
+            onChange={(e) => setSelected(e.currentTarget.value)}
+          >
+            <option>Choose Doctor</option>
+            {optionList.map((healthcareProfessional) => (
               <option
                 key={healthcareProfessional.id}
-                value={healthcareProfessional}
+                value={healthcareProfessional.id}
               >
                 {healthcareProfessional.name}
               </option>

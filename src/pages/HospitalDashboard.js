@@ -43,8 +43,15 @@ export default function HospitalDashboard() {
                   <button
                     className="bg-red-500 hover:bg-red-700 text-white font-bold mx-1 py-2 px-4 border rounded"
                     onClick={() => {
-                      userService.deleteHP(healthcareProfessional.id);
-                      loadHealthcareProfessionals();
+                      userService
+                        .deleteHP(healthcareProfessional.id)
+                        .then(function (response) {
+                          console.log(response);
+                          loadHealthcareProfessionals();
+                        })
+                        .catch(function (error) {
+                          console.log(error);
+                        });
                     }}
                   >
                     Delete

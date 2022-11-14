@@ -47,7 +47,9 @@ export default function Appointments() {
                 <td className="py-4 px-6">{appointment.name}</td>
                 <td className="py-4 px-6">{appointment.date}</td>
                 <td className="py-4 px-6">{formatTime(appointment.time)}</td>
-                <td></td>
+                <td className="py-4 px-6">
+                  {appointment.healthcareProfessional.name}
+                </td>
                 <td className="py-4 px-6">
                   <Link
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold mx-1 py-2 px-4 border rounded"
@@ -64,8 +66,15 @@ export default function Appointments() {
                   <button
                     className="bg-red-500 hover:bg-red-700 text-white font-bold mx-1 py-2 px-4 border rounded"
                     onClick={() => {
-                      userService.deleteAppointment(appointment.id);
-                      loadAppointments();
+                      userService
+                        .deleteAppointment(appointment.id)
+                        .then(function (response) {
+                          console.log(response);
+                          loadAppointments();
+                        })
+                        .catch(function (error) {
+                          console.log(error);
+                        });
                     }}
                   >
                     Delete

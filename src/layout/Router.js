@@ -18,24 +18,31 @@ import HospitalDashboard from "../pages/HospitalDashboard";
 import AddHP from "../healthcareprofessionals/AddHP";
 
 const Router = () => {
-  const [currentUser, setCurrentUser] = useState(undefined);
+  const [allowUserRoutes, setAllowUserRoutes] = useState(false);
+  const [allowHPRoutes, setAllowHPRoutes] = useState(false);
+  const [allowHospitalRoutes, setAllowHospitalRoutes] = useState(false);
 
   useEffect(() => {
     const user = authService.getCurrentUser();
-
     if (user) {
-      setCurrentUser(user);
+      if (user.includes("ROLE_PATIENT")) {
+        setAllowUserRoutes(true);
+      }
+      if (user.includes("ROLE_HP")) {
+        setAllowHPRoutes(true);
+      }
+      if (user.includes("ROLE_HOSPITAL")) {
+        setAllowHospitalRoutes(true);
+      }
     }
   }, []);
 
   return (
     <Routes>
       <>
-        {currentUser ? (
+        {allowUserRoutes && (
           <>
             <Route path="/userdashboard" element={<UserDashboard />} />
-            <Route path="/hpdashboard" element={<HPDashboard />} />
-            <Route path="/hospitaldashboard" element={<HospitalDashboard />} />
             <Route path="/appointments" element={<Appointments />} />
             <Route path="/messages" element={<Messages />} />
             <Route path="/files" element={<Files />} />
@@ -43,19 +50,28 @@ const Router = () => {
             <Route path="/addappointment" element={<AddAppointment />} />
             <Route path="/editappointment/:id" element={<EditAppointment />} />
             <Route path="/viewappointment/:id" element={<ViewAppointment />} />
-            <Route path="/addHP" element={<AddHP />} />
-          </>
-        ) : (
-          <>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/registration" element={<Registration />} />
-            <Route
-              path="/hospitalregistration"
-              element={<HospitalRegistration />}
-            />
           </>
         )}
+        {allowHPRoutes && (
+          <>
+            <Route path="/hpdashboard" element={<HPDashboard />} />
+            <Route path="/appointments" element={<Appointments />} />
+            <Route path="/messages" element={<Messages />} />
+          </>
+        )}
+        {allowHospitalRoutes && (
+          <>
+            <Route path="/hospitaldashboard" element={<HospitalDashboard />} />
+            <Route path="/addHP" element={<AddHP />} />
+          </>
+        )}
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route
+          path="/hospitalregistration"
+          element={<HospitalRegistration />}
+        />
       </>
     </Routes>
   );

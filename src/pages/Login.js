@@ -30,7 +30,7 @@ const Login = () => {
     authService.login(input.email, input.password).then(() => {
       setLoading(false);
       if (!loading) {
-        navigate("/userdashboard");
+        navigate("/");
         //temporary
         window.location.reload();
       }

@@ -41,20 +41,60 @@ const Navbar = () => {
             {currentUser ? (
               <div>
                 {showUserDashboard && (
-                  <Link
-                    className="block mt-4 lg:inline-block lg:mt-0  text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
-                    to="/userdashboard"
-                  >
-                    Dashboard
-                  </Link>
+                  <>
+                    <Link
+                      className="block mt-4 lg:inline-block lg:mt-0  text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
+                      to="/userdashboard"
+                    >
+                      Dashboard
+                    </Link>
+                    <Link
+                      className="block mt-4 lg:inline-block lg:mt-0  text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
+                      to="/appointments"
+                    >
+                      Appointments
+                    </Link>
+                    <Link
+                      className="block mt-4 lg:inline-block lg:mt-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
+                      to="/messages"
+                    >
+                      Messages
+                    </Link>
+                    <Link
+                      className="block mt-4 lg:inline-block lg:mt-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
+                      to="/files"
+                    >
+                      My Files
+                    </Link>
+                    <Link
+                      className="block mt-4 lg:inline-block lg:mt-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
+                      to="/account"
+                    >
+                      My Account
+                    </Link>
+                  </>
                 )}
                 {showHPDashboard && (
-                  <Link
-                    className="block mt-4 lg:inline-block lg:mt-0  text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
-                    to="/hpdashboard"
-                  >
-                    Dashboard
-                  </Link>
+                  <>
+                    <Link
+                      className="block mt-4 lg:inline-block lg:mt-0  text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
+                      to="/hpdashboard"
+                    >
+                      Dashboard
+                    </Link>
+                    <Link
+                      className="block mt-4 lg:inline-block lg:mt-0  text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
+                      to="/appointments"
+                    >
+                      Appointments
+                    </Link>
+                    <Link
+                      className="block mt-4 lg:inline-block lg:mt-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
+                      to="/messages"
+                    >
+                      Messages
+                    </Link>
+                  </>
                 )}
                 {showHospitalDashboard && (
                   <Link
@@ -64,30 +104,7 @@ const Navbar = () => {
                     Dashboard
                   </Link>
                 )}
-                <Link
-                  className="block mt-4 lg:inline-block lg:mt-0  text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
-                  to="/appointments"
-                >
-                  Appointments
-                </Link>
-                <Link
-                  className="block mt-4 lg:inline-block lg:mt-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
-                  to="/messages"
-                >
-                  Messages
-                </Link>
-                <Link
-                  className="block mt-4 lg:inline-block lg:mt-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
-                  to="/files"
-                >
-                  My Files
-                </Link>
-                <Link
-                  className="block mt-4 lg:inline-block lg:mt-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
-                  to="/account"
-                >
-                  My Account
-                </Link>
+
                 <Link
                   className="block mt-4 lg:inline-block lg:mt-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
                   to="/"

@@ -55,7 +55,6 @@ const Router = () => {
         {allowHPRoutes && (
           <>
             <Route path="/hpdashboard" element={<HPDashboard />} />
-            <Route path="/appointments" element={<Appointments />} />
             <Route path="/messages" element={<Messages />} />
           </>
         )}

@@ -25,6 +25,9 @@ export default function Appointments() {
                 Appointment Name
               </th>
               <th scope="col" className="py-3 px-6">
+                Type
+              </th>
+              <th scope="col" className="py-3 px-6">
                 Date
               </th>
               <th scope="col" className="py-3 px-6">
@@ -45,6 +48,7 @@ export default function Appointments() {
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
               >
                 <td className="py-4 px-6">{appointment.name}</td>
+                <td className="py-4 px-6">{appointment.type}</td>
                 <td className="py-4 px-6">{appointment.date}</td>
                 <td className="py-4 px-6">{formatTime(appointment.time)}</td>
                 <td className="py-4 px-6">

@@ -20,6 +20,7 @@ export default function AddAppointment() {
 
   const [appointment, setAppointment] = useState({
     name: "",
+    type: "",
     date: "",
     time: "",
     healthcareProfessional: {
@@ -30,7 +31,8 @@ export default function AddAppointment() {
     },
   });
 
-  const { name, date, time, healthcareProfessional, patient } = appointment;
+  const { name, type, date, time, healthcareProfessional, patient } =
+    appointment;
 
   const onInputChange = (e) => {
     setAppointment({ ...appointment, [e.target.name]: e.target.value });
@@ -66,6 +68,26 @@ export default function AddAppointment() {
             required
             onChange={(e) => onInputChange(e)}
           />
+        </div>
+        <div className="relative inline-block w-full text-gray-700">
+          <label
+            htmlFor="doctor"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          >
+            Select Type
+          </label>
+          <select
+            className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline"
+            type={"type"}
+            name="type"
+            value={type}
+            onChange={(e) => onInputChange(e)}
+          >
+            <option>Choose Appointment Type</option>
+            <option>Eye</option>
+            <option>Muscle</option>
+            <option>Back</option>
+          </select>
         </div>
         <div className="mb-6">
           <label
@@ -115,14 +137,19 @@ export default function AddAppointment() {
             onChange={(e) => setSelected(e.currentTarget.value)}
           >
             <option>Choose Doctor</option>
-            {optionList.map((healthcareProfessional) => (
-              <option
-                key={healthcareProfessional.id}
-                value={healthcareProfessional.id}
-              >
-                {healthcareProfessional.name}
-              </option>
-            ))}
+            {optionList
+              .filter(
+                (healthcareProfessional) =>
+                  healthcareProfessional.specialty === type
+              )
+              .map((healthcareProfessional) => (
+                <option
+                  key={healthcareProfessional.id}
+                  value={healthcareProfessional.id}
+                >
+                  {healthcareProfessional.name}
+                </option>
+              ))}
           </select>
         </div>
         <div className="mt-4">

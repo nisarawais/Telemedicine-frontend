@@ -53,6 +53,7 @@ const Messages = () => {
           setPrivateChats(new Map(privateChats));
         }
         break;
+      default:
     }
   };
 

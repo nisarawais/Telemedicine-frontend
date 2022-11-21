@@ -2,16 +2,25 @@ import React, { useEffect, useState } from "react";
 import userService from "../service/userService";
 
 const Account = () => {
-  const [account, setAccount] = useState({});
+  const [user, setUser] = useState({
+    emergency: Boolean,
+  });
 
   useEffect(() => {
-    loadAccount();
+    loadUser();
   }, []);
 
-  const loadAccount = async () => {
+  const loadUser = async () => {
     const result = await userService.getUser();
-    setAccount(result.data);
+    setUser(result.data);
   };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    user.emergency = true;
+    await userService.updateuser(user.id, user);
+  };
+
   return (
     <div className="flex justify-center mt-5">
       <div className="block p-10 rounded-lg shadow-lg bg-white max-w-sm">
@@ -21,25 +30,31 @@ const Account = () => {
         <div className="flex justify-center">
           <ul className="w-300 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
             <li className="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
-              Name: {account.name}
+              Name: {user.name}
             </li>
             <li className="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
-              Email: {account.email}
+              Email: {user.email}
             </li>
             <li className="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
-              Address: {account.address}
+              Address: {user.address}
             </li>
             <li className="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
-              Age: {account.age}
+              Age: {user.age}
             </li>
             <li className="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
-              Date of Birth: {account.dob}
+              Date of Birth: {user.dob}
             </li>
             <li className="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
-              Phone Number: {account.phoneNumber}
+              Phone Number: {user.phoneNumber}
+            </li>
+            <li className="py-2 px-4 w-full border-b border-gray-200 dark:border-gray-600">
+              emergency: {String(user.emergency)}
             </li>
           </ul>
         </div>
+        <button className="button" onClick={(e) => onSubmit(e)}>
+          Emergency
+        </button>
       </div>
     </div>
   );

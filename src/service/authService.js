@@ -26,6 +26,7 @@ class AuthService {
     const result = await userService.getUser();
     console.log(result);
     localStorage.setItem("user", JSON.stringify(result.data));
+    window.location.reload();
   };
 
   logout() {

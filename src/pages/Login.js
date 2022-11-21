@@ -31,8 +31,6 @@ const Login = () => {
       setLoading(false);
       if (!loading) {
         navigate("/");
-        //temporary
-        window.location.reload();
       }
     });
   };

@@ -54,6 +54,12 @@ class UserService {
     });
   }
 
+  getPatients() {
+    return axios.get(API_URL + "patient", {
+      headers: authHeader(),
+    });
+  }
+
   addHP(healthcareProfessional) {
     return axios.post(
       API_URL + "healthcareProfessional",
@@ -66,6 +72,12 @@ class UserService {
 
   deleteHP(id) {
     return axios.delete(API_URL + `healthcareProfessional/${id}`, {
+      headers: authHeader(),
+    });
+  }
+
+  deletePatient(id) {
+    return axios.delete(API_URL + `patient/${id}`, {
       headers: authHeader(),
     });
   }

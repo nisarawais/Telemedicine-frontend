@@ -16,6 +16,7 @@ import authService from "../service/authService";
 import HospitalRegistration from "../pages/HospitalRegistration";
 import HospitalDashboard from "../pages/HospitalDashboard";
 import AddHP from "../healthcareprofessionals/AddHP";
+import PatientManager from "../pages/PatientManagment";
 
 const Router = () => {
   const [allowUserRoutes, setAllowUserRoutes] = useState(false);
@@ -61,6 +62,7 @@ const Router = () => {
         {allowHospitalRoutes && (
           <>
             <Route path="/hospitaldashboard" element={<HospitalDashboard />} />
+            <Route path="/patients" element={<PatientManager />} />
             <Route path="/addHP" element={<AddHP />} />
           </>
         )}

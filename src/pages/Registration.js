@@ -128,6 +128,42 @@ const Registration = () => {
           <div className="red">{error.email && <span>{error.email}</span>}</div>
         </div>
         <div>
+          <label htmlFor="address" className="sr-only">
+            Address
+          </label>
+          <input
+            type="text"
+            name="address"
+            id="address"
+            value={input.address}
+            onChange={onInputChange}
+            onBlur={validateInput}
+            className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            placeholder="Address"
+            required
+          />
+          <div className="red">
+            {error.address && <span>{error.address}</span>}
+          </div>
+        </div>
+        <div>
+          <label htmlFor="dob" className="sr-only">
+            Address
+          </label>
+          <input
+            type="date"
+            name="dob"
+            id="dob"
+            value={input.dob}
+            onChange={onInputChange}
+            onBlur={validateInput}
+            className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            placeholder="Date of Birth"
+            required
+          />
+          <div className="red">{error.dob && <span>{error.dob}</span>}</div>
+        </div>
+        <div>
           <label htmlFor="password" className="sr-only">
             Password
           </label>

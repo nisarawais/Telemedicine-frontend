@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import authService from "../service/authService";
 import fileUploadService from "../service/fileUploadService";
 
 const Files = () => {
@@ -7,8 +8,9 @@ const Files = () => {
   const [message, setMessage] = useState("");
   const [fileInfos, setFileInfos] = useState([]);
 
+  const userID = JSON.parse(authService.getCurrentUser()).id;
   useEffect(() => {
-    fileUploadService.getFiles().then((response) => {
+    fileUploadService.getFiles(userID).then((response) => {
       setFileInfos(response.data);
     });
   }, []);
@@ -24,7 +26,7 @@ const Files = () => {
       .upload(currentFile)
       .then((response) => {
         setMessage(response.data.message);
-        return fileUploadService.getFiles();
+        return fileUploadService.getFiles(userID);
       })
       .then((files) => {
         setFileInfos(files.data);

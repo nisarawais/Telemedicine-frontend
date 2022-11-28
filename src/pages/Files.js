@@ -10,13 +10,17 @@ const Files = () => {
 
   const userID = JSON.parse(authService.getCurrentUser()).id;
   useEffect(() => {
-    fileUploadService.getFiles(userID).then((response) => {
-      setFileInfos(response.data);
-    });
+    loadFiles();
   }, []);
 
   const selectFile = (event) => {
     setSelectedFiles(event.target.files);
+  };
+
+  const loadFiles = () => {
+    fileUploadService.getFiles(userID).then((response) => {
+      setFileInfos(response.data);
+    });
   };
 
   const upload = () => {
@@ -61,16 +65,39 @@ const Files = () => {
 
       <div>{message}</div>
 
-      <div>
-        <div>List of Files</div>
-        <ul>
-          {fileInfos &&
-            fileInfos.map((file, index) => (
-              <li key={index}>
-                <a href={file.url}>{file.fileName}</a>
-              </li>
-            ))}
-        </ul>
+      <div className="block rounded-lg shadow-lg bg-white">
+        <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">
+          List of Files
+        </h5>
+        <div className="">
+          <ul>
+            {fileInfos &&
+              fileInfos.map((file, index) => (
+                <li className="border grid grid grid-cols-10" key={index}>
+                  <a className="col-span-8" href={file.url}>
+                    {file.fileName}
+                  </a>
+
+                  <button
+                    className="col-span-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-3 text-sm rounded"
+                    onClick={() => {
+                      fileUploadService
+                        .deleteFile(file.fileName)
+                        .then(function (response) {
+                          console.log(response);
+                          loadFiles();
+                        })
+                        .catch(function (error) {
+                          console.log(error);
+                        });
+                    }}
+                  >
+                    Delete
+                  </button>
+                </li>
+              ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

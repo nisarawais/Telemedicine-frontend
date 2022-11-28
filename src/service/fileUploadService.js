@@ -15,7 +15,12 @@ const getFiles = (id) => {
   return axios.get(API_URL + `files/${id}`, { headers: authHeader() });
 };
 
+const deleteFile = (id) => {
+  return axios.delete(API_URL + `files/${id}`, { headers: authHeader() });
+};
+
 export default {
   upload,
   getFiles,
+  deleteFile,
 };

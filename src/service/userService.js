@@ -42,6 +42,10 @@ class UserService {
     return axios.get(API_URL + "user", { headers: authHeader() });
   }
 
+  getUserById(id) {
+    return axios.get(API_URL + `user/${id}`, { headers: authHeader() });
+  }
+
   updateuser(id, patient) {
     return axios.put(API_URL + `patient/${id}`, patient, {
       headers: authHeader(),

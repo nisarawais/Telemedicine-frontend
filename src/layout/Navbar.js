@@ -8,8 +8,9 @@ const Navbar = () => {
   const [showHPDashboard, setShowHPDashboard] = useState(false);
   const [showHospitalDashboard, setShowHospitalDashboard] = useState(false);
 
+  const user = authService.getCurrentUser();
+
   useEffect(() => {
-    const user = authService.getCurrentUser();
     if (user) {
       setCurrentUser(user);
       if (user.includes("ROLE_PATIENT")) {
@@ -68,7 +69,7 @@ const Navbar = () => {
                     </Link>
                     <Link
                       className="block mt-4 lg:inline-block lg:mt-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
-                      to="/account"
+                      to={`/account/${JSON.parse(user).id}`}
                     >
                       My Account
                     </Link>

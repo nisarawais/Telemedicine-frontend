@@ -47,7 +47,7 @@ const Router = () => {
             <Route path="/appointments" element={<Appointments />} />
             <Route path="/messages" element={<Messages />} />
             <Route path="/files" element={<Files />} />
-            <Route path="/account" element={<Account />} />
+            <Route path="/account/:id" element={<Account />} />
             <Route path="/addappointment" element={<AddAppointment />} />
             <Route path="/editappointment/:id" element={<EditAppointment />} />
             <Route path="/viewappointment/:id" element={<ViewAppointment />} />
@@ -57,6 +57,7 @@ const Router = () => {
           <>
             <Route path="/hpdashboard" element={<HPDashboard />} />
             <Route path="/messages" element={<Messages />} />
+            <Route path="/account/:id" element={<Account />} />
           </>
         )}
         {allowHospitalRoutes && (

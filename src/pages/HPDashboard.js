@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import userService from "../service/userService";
 import formatTime from "../util/formatTime";
-
 const HPDashboard = () => {
   const [appointments, setAppointments] = useState([]);
 
@@ -49,6 +49,12 @@ const HPDashboard = () => {
                 <td className="py-4 px-6">{formatTime(appointment.time)}</td>
 
                 <td className="py-4 px-6">
+                  <Link
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold mx-1 py-2 px-4 border rounded"
+                    to={`/account/${appointment.patient.id}`}
+                  >
+                    View
+                  </Link>
                   <button
                     className="bg-red-500 hover:bg-red-700 text-white font-bold mx-1 py-2 px-4 border rounded"
                     onClick={() => {

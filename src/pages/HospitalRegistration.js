@@ -6,6 +6,9 @@ const HospitalRegistration = () => {
   const [input, setInput] = useState({
     name: "",
     email: "",
+    address: "",
+    dob: "",
+    phoneNumber: "",
     password: "",
     confirmPassword: "",
   });
@@ -13,6 +16,9 @@ const HospitalRegistration = () => {
   const [error, setError] = useState({
     name: "",
     email: "",
+    address: "",
+    dob: "",
+    phoneNumber: "",
     password: "",
     confirmPassword: "",
   });
@@ -30,7 +36,13 @@ const HospitalRegistration = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    authService.registerHospital(input.name, input.email, input.password);
+    authService.registerHospital(
+      input.name,
+      input.email,
+      input.address,
+      input.phoneNumber,
+      input.password
+    );
     navigate("/login");
   };
 
@@ -55,6 +67,18 @@ const HospitalRegistration = () => {
         case "email":
           if (!value) {
             stateObject[name] = "Please enter your email.";
+          }
+          break;
+
+        case "address":
+          if (!value) {
+            stateObject[name] = "Please enter your address.";
+          }
+          break;
+
+        case "phoneNumber":
+          if (!value) {
+            stateObject[name] = "Please enter your Phone Number.";
           }
           break;
 
@@ -104,7 +128,7 @@ const HospitalRegistration = () => {
             onChange={onInputChange}
             onBlur={validateInput}
             className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-            placeholder="Name"
+            placeholder="Hospital Name"
             required
           />
           <div>{error.name && <span>{error.name}</span>}</div>
@@ -126,6 +150,44 @@ const HospitalRegistration = () => {
             required
           />
           <div className="red">{error.email && <span>{error.email}</span>}</div>
+        </div>
+        <div>
+          <label htmlFor="address" className="sr-only">
+            Address
+          </label>
+          <input
+            type="text"
+            name="address"
+            id="address"
+            value={input.address}
+            onChange={onInputChange}
+            onBlur={validateInput}
+            className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            placeholder="Address"
+            required
+          />
+          <div className="red">
+            {error.address && <span>{error.address}</span>}
+          </div>
+        </div>
+        <div>
+          <label htmlFor="phoneNumber" className="sr-only">
+            phoneNumber
+          </label>
+          <input
+            type="text"
+            name="phoneNumber"
+            id="phoneNumber"
+            value={input.phoneNumber}
+            onChange={onInputChange}
+            onBlur={validateInput}
+            className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            placeholder="Phone Number"
+            required
+          />
+          <div className="red">
+            {error.phoneNumber && <span>{error.phoneNumber}</span>}
+          </div>
         </div>
         <div>
           <label htmlFor="password" className="sr-only">

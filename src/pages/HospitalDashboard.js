@@ -27,6 +27,15 @@ export default function HospitalDashboard() {
                 Email
               </th>
               <th scope="col" className="py-3 px-6">
+                Address
+              </th>
+              <th scope="col" className="py-3 px-6">
+                Phone Number
+              </th>
+              <th scope="col" className="py-3 px-6">
+                Specialty
+              </th>
+              <th scope="col" className="py-3 px-6">
                 <span className="sr-only">Delete</span>
               </th>
             </tr>
@@ -39,6 +48,13 @@ export default function HospitalDashboard() {
               >
                 <td className="py-4 px-6">{healthcareProfessional.name}</td>
                 <td className="py-4 px-6">{healthcareProfessional.email}</td>
+                <td className="py-4 px-6">{healthcareProfessional.address}</td>
+                <td className="py-4 px-6">
+                  {healthcareProfessional.phoneNumber}
+                </td>
+                <td className="py-4 px-6">
+                  {healthcareProfessional.specialty}
+                </td>
                 <td className="py-4 px-6">
                   <button
                     className="bg-red-500 hover:bg-red-700 text-white font-bold mx-1 py-2 px-4 border rounded"

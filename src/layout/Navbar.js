@@ -97,7 +97,7 @@ const Navbar = () => {
                       className="block mt-4 lg:inline-block lg:mt-0  text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
                       to="/hospitaldashboard"
                     >
-                      Dashboard
+                      Healthcare Professionals
                     </Link>
                     <Link
                       className="block mt-4 lg:inline-block lg:mt-0  text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"

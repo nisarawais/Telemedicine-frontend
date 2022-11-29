@@ -25,10 +25,11 @@ const Account = () => {
     e.preventDefault();
     user.emergency = true;
     await userService.updateuser(user.id, user);
+    loadUser();
   };
 
   return (
-    <div className="flex justify-center mt-5 mr-3 px-16">
+    <div className="flex justify-center mt-5 mr-3">
       <div className="block p-10 rounded-lg shadow-lg bg-white max-w-sm">
         <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">
           Profile
@@ -65,7 +66,7 @@ const Account = () => {
           Emergency
         </button>
       </div>
-      <div className="block p-10 rounded-lg shadow-lg bg-white max-w-sm ml-3 px-16">
+      <div className="block p-10 rounded-lg shadow-lg bg-white max-w-sm w-96 ml-3">
         <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">
           Files
         </h5>

@@ -34,18 +34,23 @@ class AuthService {
     Navigate("/");
   }
 
-  registerPatient(name, email, password) {
+  registerPatient(name, email, address, dob, phoneNumber, password) {
     return axios.post(API_URL + "patient", {
       name,
       email,
+      address,
+      dob,
+      phoneNumber,
       password,
     });
   }
 
-  registerHospital(name, email, password) {
+  registerHospital(name, email, address, phoneNumber, password) {
     return axios.post(API_URL + "hospital", {
       name,
       email,
+      address,
+      phoneNumber,
       password,
     });
   }

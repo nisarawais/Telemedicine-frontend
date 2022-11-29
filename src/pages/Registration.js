@@ -6,6 +6,9 @@ const Registration = () => {
   const [input, setInput] = useState({
     name: "",
     email: "",
+    address: "",
+    dob: "",
+    phoneNumber: "",
     password: "",
     confirmPassword: "",
   });
@@ -13,6 +16,9 @@ const Registration = () => {
   const [error, setError] = useState({
     name: "",
     email: "",
+    address: "",
+    dob: "",
+    phoneNumber: "",
     password: "",
     confirmPassword: "",
   });
@@ -30,7 +36,14 @@ const Registration = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    authService.registerPatient(input.name, input.email, input.password);
+    authService.registerPatient(
+      input.name,
+      input.email,
+      input.address,
+      input.dob,
+      input.phoneNumber,
+      input.password
+    );
     navigate("/login");
   };
 
@@ -55,6 +68,24 @@ const Registration = () => {
         case "email":
           if (!value) {
             stateObject[name] = "Please enter your email.";
+          }
+          break;
+
+        case "address":
+          if (!value) {
+            stateObject[name] = "Please enter your address.";
+          }
+          break;
+
+        case "dob":
+          if (!value) {
+            stateObject[name] = "Please enter your Date of Birth.";
+          }
+          break;
+
+        case "phoneNumber":
+          if (!value) {
+            stateObject[name] = "Please enter your Phone Number.";
           }
           break;
 
@@ -148,7 +179,7 @@ const Registration = () => {
         </div>
         <div>
           <label htmlFor="dob" className="sr-only">
-            Address
+            Date of Birth
           </label>
           <input
             type="date"
@@ -162,6 +193,25 @@ const Registration = () => {
             required
           />
           <div className="red">{error.dob && <span>{error.dob}</span>}</div>
+        </div>
+        <div>
+          <label htmlFor="phoneNumber" className="sr-only">
+            phoneNumber
+          </label>
+          <input
+            type="text"
+            name="phoneNumber"
+            id="phoneNumber"
+            value={input.phoneNumber}
+            onChange={onInputChange}
+            onBlur={validateInput}
+            className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            placeholder="Phone Number"
+            required
+          />
+          <div className="red">
+            {error.phoneNumber && <span>{error.phoneNumber}</span>}
+          </div>
         </div>
         <div>
           <label htmlFor="password" className="sr-only">

@@ -69,7 +69,7 @@ export default function AddAppointment() {
             onChange={(e) => onInputChange(e)}
           />
         </div>
-        <div className="relative inline-block w-full text-gray-700">
+        <div className="mb-6 relative inline-block w-full text-gray-700">
           <label
             htmlFor="doctor"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -84,9 +84,11 @@ export default function AddAppointment() {
             onChange={(e) => onInputChange(e)}
           >
             <option>Choose Appointment Type</option>
-            <option>Eye</option>
+            <option>General</option>
+            <option>Brain</option>
             <option>Muscle</option>
-            <option>Back</option>
+            <option>Bone</option>
+            <option>Eye</option>
           </select>
         </div>
         <div className="mb-6">
@@ -138,16 +140,17 @@ export default function AddAppointment() {
           >
             <option>Choose Doctor</option>
             {optionList
-              .filter(
-                (healthcareProfessional) =>
-                  healthcareProfessional.specialty === type
-              )
+              .filter(function (healthcareProfessional) {
+                return (
+                  type === "General" || healthcareProfessional.specialty == type
+                );
+              })
               .map((healthcareProfessional) => (
                 <option
                   key={healthcareProfessional.id}
                   value={healthcareProfessional.id}
                 >
-                  {healthcareProfessional.name}
+                  {`${healthcareProfessional.name} (${healthcareProfessional.specialty} Specialist)`}
                 </option>
               ))}
           </select>

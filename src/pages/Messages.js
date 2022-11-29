@@ -128,25 +128,26 @@ const Messages = () => {
                   {chat.senderName !== userData.username && (
                     <div className="avatar">{chat.senderName}</div>
                   )}
-                  <div className="message-data">{chat.message}</div>
+
                   {chat.senderName === userData.username && (
                     <div className="avatar self">{chat.senderName}</div>
                   )}
+                  <div className="message-data">{chat.message}</div>
                 </li>
               ))}
             </ul>
 
-            <div className="send-message">
+            <div className="send-message mt-2">
               <input
                 type="text"
                 className="input-message"
-                placeholder="enter the message"
+                placeholder="Enter Message"
                 value={userData.message}
                 onChange={handleMessage}
               />
               <button
                 type="button"
-                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border rounded"
+                className="ml-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border rounded"
                 onClick={sendPrivateValue}
               >
                 send

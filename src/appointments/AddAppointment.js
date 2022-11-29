@@ -47,8 +47,8 @@ export default function AddAppointment() {
   };
 
   return (
-    <div className="flex h-screen justify-center">
-      <form className="" onSubmit={(e) => onSubmit(e)}>
+    <div className="bg-gray-100 m-auto max-w-xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8 space-y-6">
+      <form className="space-y-4" onSubmit={(e) => onSubmit(e)}>
         <h2 className="text-3xl font-extrabold dark:text-white mb-3">
           Register Appointment
         </h2>

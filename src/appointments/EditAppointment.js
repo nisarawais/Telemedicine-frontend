@@ -10,6 +10,7 @@ export default function EditAppointment() {
 
   const [appointment, setAppointment] = useState({
     name: "",
+    type: "",
     date: "",
     time: "",
     healthcareProfessional: {
@@ -17,7 +18,7 @@ export default function EditAppointment() {
     },
   });
 
-  const { name, date, time, healthcareProfessional } = appointment;
+  const { name, type, date, time, healthcareProfessional } = appointment;
 
   const onInputChange = (e) => {
     setAppointment({ ...appointment, [e.target.name]: e.target.value });
@@ -46,10 +47,10 @@ export default function EditAppointment() {
   };
 
   return (
-    <div className="flex h-screen justify-center">
-      <form className="" onSubmit={(e) => onSubmit(e)}>
+    <div className="bg-gray-100 m-auto max-w-xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8 space-y-6">
+      <form className="space-y-4" onSubmit={(e) => onSubmit(e)}>
         <h2 className="text-3xl font-extrabold dark:text-white mb-3">
-          Edit Appointment
+          Register Appointment
         </h2>
         <div className="mb-6">
           <label
@@ -67,6 +68,28 @@ export default function EditAppointment() {
             required
             onChange={(e) => onInputChange(e)}
           />
+        </div>
+        <div className="mb-6 relative inline-block w-full text-gray-700">
+          <label
+            htmlFor="doctor"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          >
+            Select Type
+          </label>
+          <select
+            className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline"
+            type={"type"}
+            name="type"
+            value={type}
+            onChange={(e) => onInputChange(e)}
+          >
+            <option>Choose Appointment Type</option>
+            <option>General</option>
+            <option>Brain</option>
+            <option>Muscle</option>
+            <option>Bone</option>
+            <option>Eye</option>
+          </select>
         </div>
         <div className="mb-6">
           <label
@@ -102,22 +125,36 @@ export default function EditAppointment() {
             onChange={(e) => onInputChange(e)}
           />
         </div>
-        <select
-          className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline"
-          disabled={false}
-          value={select}
-          onChange={(e) => setSelected(e.currentTarget.value)}
-        >
-          <option>Choose Doctor</option>
-          {optionList.map((healthcareProfessional) => (
-            <option
-              key={healthcareProfessional.id}
-              value={healthcareProfessional.id}
-            >
-              {healthcareProfessional.name}
-            </option>
-          ))}
-        </select>
+        <div className="relative inline-block w-full text-gray-700">
+          <label
+            htmlFor="doctor"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          >
+            Select Doctor
+          </label>
+          <select
+            className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline"
+            disabled={false}
+            value={select}
+            onChange={(e) => setSelected(e.currentTarget.value)}
+          >
+            <option>Choose Doctor</option>
+            {optionList
+              .filter(function (healthcareProfessional) {
+                return (
+                  type === "General" || healthcareProfessional.specialty == type
+                );
+              })
+              .map((healthcareProfessional) => (
+                <option
+                  key={healthcareProfessional.id}
+                  value={healthcareProfessional.id}
+                >
+                  {`${healthcareProfessional.name} (${healthcareProfessional.specialty} Specialist)`}
+                </option>
+              ))}
+          </select>
+        </div>
         <div className="mt-4">
           <button
             type="submit"

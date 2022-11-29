@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import userService from "../service/userService";
+import authService from "../service/authService";
 import fileUploadService from "../service/fileUploadService";
 
 const Account = () => {
-  const [user, setUser] = useState({
-    emergency: Boolean,
-  });
+  const [showUserDashboard, setShowUserDashboard] = useState(false);
+  const [user, setUser] = useState([]);
   const [fileInfos, setFileInfos] = useState([]);
   const { id } = useParams();
+
+  const users = authService.getCurrentUser();
+
   useEffect(() => {
     loadUser();
+    console.log(users);
+    if (users.includes("ROLE_PATIENT")) {
+      setShowUserDashboard(true);
+    }
+
     fileUploadService.getFiles(id).then((response) => {
       setFileInfos(response.data);
     });
@@ -59,12 +67,16 @@ const Account = () => {
             </li>
           </ul>
         </div>
-        <button
-          className="bg-red-500 hover:bg-red-700 text-white font-bold mx-1 mt-2 py-2 px-4 border rounded"
-          onClick={(e) => onSubmit(e)}
-        >
-          Emergency
-        </button>
+        {showUserDashboard && (
+          <>
+            <button
+              className="bg-red-500 hover:bg-red-700 text-white font-bold mx-1 mt-2 py-2 px-4 border rounded"
+              onClick={(e) => onSubmit(e)}
+            >
+              Emergency
+            </button>
+          </>
+        )}
       </div>
       <div className="block p-10 rounded-lg shadow-lg bg-white max-w-sm w-96 ml-3">
         <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">

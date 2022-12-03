@@ -2,6 +2,7 @@ import axios from "axios";
 import authHeader from "./authHeader";
 const API_URL = "http://localhost:8080/";
 
+//file upload service for file upload functions
 const upload = (file) => {
   let formData = new FormData();
 

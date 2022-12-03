@@ -145,7 +145,7 @@ const Registration = () => {
             Email
           </label>
           <input
-            type="text"
+            type="email"
             name="email"
             id="email"
             value={input.email}

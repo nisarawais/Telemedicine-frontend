@@ -3,6 +3,7 @@ import authHeader from "./authHeader";
 
 const API_URL = "http://localhost:8080/api/";
 
+//userservice class for various user API call functions
 class UserService {
   getAppointments() {
     return axios.get(API_URL + "appointment", { headers: authHeader() });

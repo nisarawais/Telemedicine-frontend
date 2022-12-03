@@ -4,6 +4,7 @@ import userService from "./userService";
 
 const API_URL = "http://localhost:8080/api/";
 
+//Auth service class for various authoization functions
 class AuthService {
   login(email, password) {
     return axios

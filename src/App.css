@@ -164,6 +164,3 @@ ul {
 .message-data{
   padding:5px;
 }
-.message.self{
-  justify-content: end;
-}
